@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Momentum and Collisions</title>
+    <style>
+      /* Reset and base */
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #f0f9f9;
+        color: #023047;
+      }
+      a {
+        color: #00bcd4;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      /* Navbar */
+      nav {
+        background: linear-gradient(90deg, #a0e7e5, #b4f8c8);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      nav .logo {
+        font-weight: bold;
+        font-size: 1.6rem;
+        color: #007b8a;
+        letter-spacing: 2px;
+        user-select: none;
+      }
+      nav ul {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      nav ul li a {
+        font-weight: 600;
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        color: #055c6b;
+      }
+      nav ul li a:hover {
+        background-color: #b0f2f7;
+        color: #02475e;
+        transform: scale(1.1);
+      }
+
+      /* Grid container */
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      /* Section styling */
+      section {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      section:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Section headings */
+      h2 {
+        color: #007b8a;
+        border-bottom: 3px solid #00bcd4;
+        padding-bottom: 0.4rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Images */
+      .momentum-image {
+        max-width: 100%;
+        border-radius: 10px;
+        margin: 1rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: block;
+      }
+
+      /* Lists */
+      ul.collisions-list {
+        padding-left: 1.2rem;
+        list-style-type: square;
+      }
+
+      /* Interactive container */
+      .interactive {
+        background: #e0f7fa;
+        padding: 1.2rem;
+        border-radius: 12px;
+        margin-top: 1rem;
+        box-shadow: inset 0 0 10px #a7d8de;
+      }
+
+      /* Embedded video/simulation */
+      .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        margin-top: 1rem;
+      }
+      .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .expanded-card-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(240, 249, 249, 0.8);
+        backdrop-filter: blur(8px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+
+      .expanded-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+        transform: scale(1.05);
+        animation: fadeIn 0.3s ease-in-out;
+        position: relative;
+      }
+
+      .expanded-card h2 {
+        border-bottom: 2px solid #00bcd4;
+      }
+
+      .expanded-close {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #007b8a;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Momentum Physics</div>
+      <ul>
+        <li><a href="#momentum">What is Momentum?</a></li>
+        <li><a href="#conservation">Conservation of Momentum</a></li>
+        <li><a href="#collisions">Collisions & Newton's Laws</a></li>
+        <li><a href="#impulse">Impulse-Momentum Theorem</a></li>
+        <li><a href="#interactive">Interactive</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <section id="momentum">
+        <h2>What is Momentum?</h2>
+        <p>
+          Momentum is the quantity of motion an object has. It depends on the
+          object's mass and velocity.
+        </p>
+        <p>Mathematically, momentum <strong>p</strong> is given by:</p>
+        <p>
+          <strong>p = m × v</strong>, where <em>m</em> is mass and <em>v</em> is
+          velocity.
+        </p>
+        <img
+          class="momentum-image"
+          src="https://images.slideplayer.com/32/9865939/slides/slide_3.jpg"
+          alt="Momentum formula illustration"
+        />
+      </section>
+
+      <section id="conservation">
+        <h2>Conservation of Momentum</h2>
+        <p>
+          In a closed system, the total momentum before and after any
+          interaction remains constant, as long as no external forces act.
+        </p>
+        <p>
+          This is called the <em>Conservation of Momentum</em> principle and can
+          be expressed as:
+        </p>
+        <p><strong>m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'</strong></p>
+        <p>where the primes (') indicate velocities after interaction.</p>
+      </section>
+
+      <section id="collisions">
+        <h2>Elastic, Inelastic & Explosive Collisions</h2>
+        <ul class="collisions-list">
+          <li>
+            <strong>Elastic Collision:</strong> Both momentum and kinetic energy
+            are conserved.
+          </li>
+          <li>
+            <strong>Inelastic Collision:</strong> Momentum is conserved, but
+            kinetic energy is not.
+          </li>
+          <li>
+            <strong>Explosive Collision:</strong> Objects push apart with energy
+            released, but momentum is still conserved.
+          </li>
+        </ul>
+
+        <p>Equations for elastic collisions (two objects):</p>
+        <p>
+          <strong>m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'</strong> (momentum conserved)
+          <br />
+          <strong>½m₁v₁² + ½m₂v₂² = ½m₁v₁'² + ½m₂v₂'²</strong> (kinetic energy
+          conserved)
+        </p>
+
+        <p><strong>Newton's Laws related to collisions:</strong></p>
+        <ul>
+          <li>
+            <em>Newton’s 1st Law:</em> An object remains at rest or in uniform
+            motion unless acted upon by an external force.
+          </li>
+          <li>
+            <em>Newton’s 2nd Law:</em> Force equals mass times acceleration (F =
+            ma), which relates to how momentum changes over time.
+          </li>
+          <li>
+            <em>Newton’s 3rd Law:</em> For every action, there is an equal and
+            opposite reaction — essential in collisions.
+          </li>
+        </ul>
+      </section>
+
+      <section id="impulse">
+        <h2>Impulse-Momentum Theorem</h2>
+        <p>
+          The Impulse-Momentum Theorem connects impulse (force applied over
+          time) with the change in momentum:
+        </p>
+        <p><strong>Impulse (J) = Change in momentum (Δp)</strong></p>
+        <p>This theorem can be written in several equivalent ways:</p>
+        <ul>
+          <li>J = F × Δt</li>
+          <li>J = m × v_final − m × v_initial</li>
+          <li>F × Δt = m(v_final − v_initial)</li>
+        </ul>
+        <p>
+          This explains why increasing the impact time (Δt) reduces the force
+          experienced during collisions.
+        </p>
+      </section>
+
+      <section id="interactive" class="interactive">
+        <h2>Interactive Activity: Explore Collisions</h2>
+        <p>
+          Try adjusting mass and velocity of two objects to see how momentum and
+          kinetic energy behave in collisions.
+        </p>
+        <div class="video-wrapper">
+          <!-- PhET Collision Lab embed - Note: for security reasons, some browsers may block embedding -->
+          <iframe
+            src="https://phet.colorado.edu/sims/html/collision-lab/latest/collision-lab_en.html"
+            title="Collision Lab Simulation"
+            sandbox="allow-scripts allow-same-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <p>
+          <small
+            ><a
+              href="https://phet.colorado.edu/en/simulation/collision-lab"
+              target="_blank"
+              rel="noopener"
+              >Open full simulation at PhET Colorado</a
+            ></small
+          >
+        </p>
+      </section>
+    </div>
+    <div class="expanded-card-overlay" id="overlay">
+      <div class="expanded-card" id="expandedContent">
+        <span class="expanded-close" onclick="closeExpanded()">×</span>
+        <div id="expandedHTML"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    // Make each section expandable
+    const sections = document.querySelectorAll("section");
+    sections.forEach((sec) => {
+      sec.addEventListener("click", () => {
+        const overlay = document.getElementById("overlay");
+        const expandedHTML = document.getElementById("expandedHTML");
+        expandedHTML.innerHTML = sec.innerHTML;
+        overlay.style.display = "flex";
+      });
+    });
+
+    function closeExpanded() {
+      document.getElementById("overlay").style.display = "none";
+    }
+  </script>
+</html>
