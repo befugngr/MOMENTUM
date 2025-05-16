@@ -184,11 +184,142 @@
           transform: scale(1.05);
         }
       }
+      .impulse-equation {
+        display: grid;
+        grid-template-columns: repeat(7, auto);
+        gap: 1.2rem;
+        text-align: center;
+        margin: 2rem 0 1rem;
+        padding-left: 1rem;
+        border-left: 5px solid #00bcd4;
+      }
+
+      .impulse-equation .eq {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      .impulse-equation .label {
+        font-size: 0.9rem;
+        color: #444;
+        margin-top: 0.3rem;
+      }
+
+      .collision-type {
+        margin-bottom: 2rem;
+        padding-left: 1rem;
+        border-left: 5px solid #00bcd4;
+      }
+
+      .collision-equation {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.4rem;
+      }
+
+      .collision-equation .before {
+        background-color: yellow;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.2rem;
+      }
+
+      .collision-equation .after {
+        background-color: cyan;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.2rem;
+      }
+      .collision-box {
+        border-left: 6px solid #444;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        background: #f9f9f9;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+
+      .collision-label {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+        color: #222;
+      }
+
+      .collision-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .collision-side {
+        flex: 1;
+        min-width: 140px;
+        text-align: center;
+        background: #fff;
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.06);
+      }
+
+      .side-title {
+        font-weight: bold;
+        color: #666;
+        margin-bottom: 0.4rem;
+      }
+
+      .collision-arrow {
+        font-size: 2rem;
+        color: #007acc;
+        animation: bounceArrow 1.2s infinite ease-in-out;
+      }
+
+      @keyframes bounceArrow {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(6px);
+        }
+      }
+      #collisions {
+        grid-column: 1 / -1;
+        max-width: 100vw;
+        width: 100%;
+      }
+      .floater {
+        position: absolute;
+        font-size: 2em;
+        opacity: 0.1;
+        animation: float 20s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-100vh);
+        }
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: none;
+      }
     </style>
   </head>
   <body>
     <nav>
-      <div class="logo">Momentum Physics</div>
+      <div class="logo fade-in">Momentum Physics</div>
       <ul>
         <li><a href="#momentum">What is Momentum?</a></li>
         <li><a href="#conservation">Conservation of Momentum</a></li>
@@ -233,28 +364,107 @@
 
       <section id="collisions">
         <h2>Elastic, Inelastic & Explosive Collisions</h2>
-        <ul class="collisions-list">
-          <li>
-            <strong>Elastic Collision:</strong> Both momentum and kinetic energy
-            are conserved.
-          </li>
-          <li>
-            <strong>Inelastic Collision:</strong> Momentum is conserved, but
-            kinetic energy is not.
-          </li>
-          <li>
-            <strong>Explosive Collision:</strong> Objects push apart with energy
-            released, but momentum is still conserved.
-          </li>
-        </ul>
+        <div class="collision-type">
+          <div class="collision-label">Elastic Collision</div>
+          <p>
+            Both momentum and kinetic energy are conserved.<br />
+            Example: Two billiard balls colliding and bouncing off each other.
+          </p>
 
-        <p>Equations for elastic collisions (two objects):</p>
-        <p>
-          <strong>m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'</strong> (momentum conserved)
-          <br />
-          <strong>½m₁v₁² + ½m₂v₂² = ½m₁v₁'² + ½m₂v₂'²</strong> (kinetic energy
-          conserved)
-        </p>
+          <div class="collision-equation">
+            <span class="before">KE<sub>before</sub> = KE<sub>after</sub></span>
+          </div>
+          <div class="collision-gif">
+            <img
+              src="https://teaching.smp.uq.edu.au/scims/Calculus/images/collisionanimated.gif"
+              alt="Elastic Collision Example"
+            />
+          </div>
+        </div>
+        <div class="collision-type">
+          <div class="collision-label">Inelastic Collision</div>
+          <p>
+            Momentum is conserved, but kinetic energy is not.<br />
+            Example: A car crash where vehicles crumple and stick together.
+          </p>
+          <div class="collision-equation">
+            <span class="before"
+              >KE<sub>before</sub> &gt; KE<sub>after</sub></span
+            >
+          </div>
+          <div class="collision-gif">
+            <img
+              src="https://science8sc.weebly.com/uploads/1/3/2/7/132773018/car-collision_orig.gif"
+              alt="Elastic Collision Example"
+            />
+          </div>
+        </div>
+        <div class="collision-type">
+          <div class="collision-label">Explosive Collision</div>
+          <p>
+            Objects push apart with energy released, but momentum is still
+            conserved.<br />
+            Example: A firework exploding in midair.
+          </p>
+          <div class="collision-equation">
+            <span class="after"
+              >KE<sub>after</sub> &gt; KE<sub>before</sub></span
+            >
+          </div>
+          <div class="collision-gif">
+            <img
+              src="https://i.gifer.com/origin/22/22a32cffe5ad848d803f5edb10242719_w200.gif"
+              alt="Elastic Collision Example"
+            />
+          </div>
+        </div>
+        <!-- Elastic -->
+        <div class="collision-box">
+          <div class="collision-label">Elastic Collision</div>
+          <div class="collision-row">
+            <div class="collision-side">
+              <p class="side-title">Before Collision</p>
+              <p>m₁v₁ + m₂v₂</p>
+            </div>
+            <div class="collision-arrow">→</div>
+            <div class="collision-side">
+              <p class="side-title">After Collision</p>
+              <p>m₁v₁ + m₂v₂</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inelastic -->
+        <div class="collision-box">
+          <div class="collision-label">Inelastic Collision</div>
+          <div class="collision-row">
+            <div class="collision-side">
+              <p class="side-title">Before Collision</p>
+              <p>m₁v₁ + m₂v₂</p>
+            </div>
+            <div class="collision-arrow">→</div>
+            <div class="collision-side">
+              <p class="side-title">After Collision</p>
+              <p>m<sub>T</sub>v<sub>T</sub></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Explosive -->
+        <div class="collision-box">
+          <div class="collision-label">Explosive Collision</div>
+          <div class="collision-row">
+            <div class="collision-side">
+              <p class="side-title">Before Explosion</p>
+              <p>m<sub>T</sub>v<sub>T</sub></p>
+            </div>
+            <div class="collision-arrow">→</div>
+            <div class="collision-side">
+              <p class="side-title">After Explosion</p>
+              <p>m₁v₁ + m₂v₂</p>
+            </div>
+          </div>
+        </div>
 
         <p><strong>Newton's Laws related to collisions:</strong></p>
         <ul>
@@ -276,19 +486,44 @@
       <section id="impulse">
         <h2>Impulse-Momentum Theorem</h2>
         <p>
-          The Impulse-Momentum Theorem connects impulse (force applied over
-          time) with the change in momentum:
+          The Impulse-Momentum Theorem says that impulse equals the change in
+          momentum. It also equals the net force multiplied by the time the
+          force acts, or mass times the change in velocity.
         </p>
-        <p><strong>Impulse (J) = Change in momentum (Δp)</strong></p>
-        <p>This theorem can be written in several equivalent ways:</p>
+
+        <div class="impulse-equation">
+          <div class="eq">I</div>
+          <div class="eq">=</div>
+          <div class="eq">Δp</div>
+          <div class="eq">=</div>
+          <div class="eq">F<sub>net</sub> × Δt</div>
+          <div class="eq">=</div>
+          <div class="eq">m × Δv</div>
+
+          <div class="label">Impulse</div>
+          <div class="label"></div>
+          <div class="label">Change in momentum</div>
+          <div class="label"></div>
+          <div class="label">Net force × time</div>
+          <div class="label"></div>
+          <div class="label">Mass × velocity change</div>
+        </div>
+
+        <p>You can rearrange this formula to isolate specific variables:</p>
         <ul>
-          <li>J = F × Δt</li>
-          <li>J = m × v_final − m × v_initial</li>
-          <li>F × Δt = m(v_final − v_initial)</li>
+          <li>
+            <strong>I = F<sub>net</sub> × Δt</strong> → Find impulse from force
+            and time
+          </li>
+          <li>
+            <strong>F<sub>net</sub> = I / Δt</strong> → Find net force
+          </li>
+          <li><strong>Δv = I / m</strong> → Find how much velocity changes</li>
         </ul>
+
         <p>
-          This explains why increasing the impact time (Δt) reduces the force
-          experienced during collisions.
+          The formula shows how increasing time (Δt), like using padding or
+          airbags, reduces the force in a collision.
         </p>
       </section>
 
@@ -325,8 +560,33 @@
         <div id="expandedHTML"></div>
       </div>
     </div>
+    <footer
+      style="
+        background: #a0e7e5;
+        padding: 1.5rem 2rem;
+        color: #023047;
+        text-align: center;
+        font-size: 0.95rem;
+        box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 4rem;
+      "
+    >
+      <div style="max-width: 1200px; margin: 0 auto">
+        <p>&copy; 2025 Eton.</p>
+      </div>
+    </footer>
   </body>
   <script>
+    const elements = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    });
+    elements.forEach((el) => observer.observe(el));
+
     // Make each section expandable
     const sections = document.querySelectorAll("section");
     sections.forEach((sec) => {
