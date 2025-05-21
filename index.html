@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,6 +23,7 @@
       a:hover {
         text-decoration: underline;
       }
+
 
       /* Navbar */
       nav {
@@ -62,6 +64,7 @@
         transform: scale(1.1);
       }
 
+
       /* Grid container */
       .container {
         max-width: 1200px;
@@ -71,6 +74,7 @@
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
       }
+
 
       /* Section styling */
       section {
@@ -85,6 +89,7 @@
         box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
       }
 
+
       /* Section headings */
       h2 {
         color: #007b8a;
@@ -92,6 +97,7 @@
         padding-bottom: 0.4rem;
         margin-bottom: 1rem;
       }
+
 
       /* Images */
       .momentum-image {
@@ -102,11 +108,13 @@
         display: block;
       }
 
+
       /* Lists */
       ul.collisions-list {
         padding-left: 1.2rem;
         list-style-type: square;
       }
+
 
       /* Interactive container */
       .interactive {
@@ -116,6 +124,7 @@
         margin-top: 1rem;
         box-shadow: inset 0 0 10px #a7d8de;
       }
+
 
       /* Embedded video/simulation */
       .video-wrapper {
@@ -148,6 +157,7 @@
         z-index: 999;
       }
 
+
       .expanded-card {
         background: white;
         padding: 2rem;
@@ -161,9 +171,11 @@
         position: relative;
       }
 
+
       .expanded-card h2 {
         border-bottom: 2px solid #00bcd4;
       }
+
 
       .expanded-close {
         position: absolute;
@@ -173,6 +185,7 @@
         cursor: pointer;
         color: #007b8a;
       }
+
 
       @keyframes fadeIn {
         from {
@@ -194,10 +207,12 @@
         border-left: 5px solid #00bcd4;
       }
 
+
       .impulse-equation .eq {
         font-size: 1.8rem;
         font-weight: bold;
       }
+
 
       .impulse-equation .label {
         font-size: 0.9rem;
@@ -205,11 +220,13 @@
         margin-top: 0.3rem;
       }
 
+
       .collision-type {
         margin-bottom: 2rem;
         padding-left: 1rem;
         border-left: 5px solid #00bcd4;
       }
+
 
       .collision-equation {
         font-size: 1.5rem;
@@ -217,11 +234,13 @@
         margin-bottom: 0.4rem;
       }
 
+
       .collision-equation .before {
         background-color: yellow;
         padding: 0.2rem 0.4rem;
         border-radius: 0.2rem;
       }
+
 
       .collision-equation .after {
         background-color: cyan;
@@ -237,12 +256,14 @@
         transition: 0.3s;
       }
 
+
       .collision-label {
         font-weight: bold;
         font-size: 1.2rem;
         margin-bottom: 0.8rem;
         color: #222;
       }
+
 
       .collision-row {
         display: flex;
@@ -251,6 +272,7 @@
         gap: 1.5rem;
         flex-wrap: wrap;
       }
+
 
       .collision-side {
         flex: 1;
@@ -263,17 +285,20 @@
         box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.06);
       }
 
+
       .side-title {
         font-weight: bold;
         color: #666;
         margin-bottom: 0.4rem;
       }
 
+
       .collision-arrow {
         font-size: 2rem;
         color: #007acc;
         animation: bounceArrow 1.2s infinite ease-in-out;
       }
+
 
       @keyframes bounceArrow {
         0%,
@@ -297,6 +322,7 @@
         pointer-events: none;
       }
 
+
       @keyframes float {
         0% {
           transform: translateY(0);
@@ -310,6 +336,7 @@
         transform: translateY(30px);
         transition: opacity 0.6s ease-out, transform 0.6s ease-out;
       }
+
 
       .fade-in.visible {
         opacity: 1;
@@ -328,6 +355,7 @@
         <li><a href="#interactive">Interactive</a></li>
       </ul>
     </nav>
+
 
     <div class="container">
       <section id="momentum">
@@ -348,6 +376,7 @@
         />
       </section>
 
+
       <section id="conservation">
         <h2>Conservation of Momentum</h2>
         <p>
@@ -360,7 +389,12 @@
         </p>
         <p><strong>m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'</strong></p>
         <p>where the primes (') indicate velocities after interaction.</p>
+        <h3>Example</h3>
+    
+        <p> A simple example of a closed system is a sealed jar containing a few marbles. When you shake the jar, the marbles can collide with each other, but no marbles can enter or leave the jar, allowing you to observe the conservation of momentum and energy within that closed environment.
+        </p>
       </section>
+
 
       <section id="collisions">
         <h2>Elastic, Inelastic & Explosive Collisions</h2>
@@ -370,6 +404,7 @@
             Both momentum and kinetic energy are conserved.<br />
             Example: Two billiard balls colliding and bouncing off each other.
           </p>
+
 
           <div class="collision-equation">
             <span class="before">KE<sub>before</sub> = KE<sub>after</sub></span>
@@ -434,6 +469,7 @@
           </div>
         </div>
 
+
         <!-- Inelastic -->
         <div class="collision-box">
           <div class="collision-label">Inelastic Collision</div>
@@ -450,6 +486,7 @@
           </div>
         </div>
 
+
         <!-- Explosive -->
         <div class="collision-box">
           <div class="collision-label">Explosive Collision</div>
@@ -465,6 +502,7 @@
             </div>
           </div>
         </div>
+
 
         <p><strong>Newton's Laws related to collisions:</strong></p>
         <ul>
@@ -483,6 +521,7 @@
         </ul>
       </section>
 
+
       <section id="impulse">
         <h2>Impulse-Momentum Theorem</h2>
         <p>
@@ -490,6 +529,7 @@
           momentum. It also equals the net force multiplied by the time the
           force acts, or mass times the change in velocity.
         </p>
+
 
         <div class="impulse-equation">
           <div class="eq">I</div>
@@ -500,6 +540,7 @@
           <div class="eq">=</div>
           <div class="eq">m × Δv</div>
 
+
           <div class="label">Impulse</div>
           <div class="label"></div>
           <div class="label">Change in momentum</div>
@@ -508,6 +549,7 @@
           <div class="label"></div>
           <div class="label">Mass × velocity change</div>
         </div>
+
 
         <p>You can rearrange this formula to isolate specific variables:</p>
         <ul>
@@ -521,11 +563,13 @@
           <li><strong>Δv = I / m</strong> → Find how much velocity changes</li>
         </ul>
 
+
         <p>
           The formula shows how increasing time (Δt), like using padding or
           airbags, reduces the force in a collision.
         </p>
       </section>
+
 
       <section id="interactive" class="interactive">
         <h2>Interactive Activity: Explore Collisions</h2>
@@ -587,6 +631,7 @@
     });
     elements.forEach((el) => observer.observe(el));
 
+
     // Make each section expandable
     const sections = document.querySelectorAll("section");
     sections.forEach((sec) => {
@@ -598,8 +643,12 @@
       });
     });
 
+
     function closeExpanded() {
       document.getElementById("overlay").style.display = "none";
     }
   </script>
 </html>
+
+
+
